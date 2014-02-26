@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="JScroll.js"></script>
+<title>无标题文档</title>
+<style type="text/css">
+*{font-family:"Arial","Tahoma","微软雅黑","雅黑"}
+.box {width:496px;overflow:hidden;border:1px solid #ddd;padding:10px;height:400px;position:relative;margin:20px;box-shadow:1px 2px 5px #000}
+.boxcont {position:absolute;}
+span{margin:10px 10px 0px 5px}
+div p,pre {font:12px "微软雅黑", Arial,tahoma, Verdana, sans-serif; line-height:22px; padding-left:30px; color:#999}
+</style>
+</head>
+<body >
+<script type="text/javascript">
+
+</script>
+<hr>
+<div class="box" onselectstart="return false">
+	<div class="boxcont" >	
+		<h2 >顶部</h2>
+		<div class="for"><span></span></div>
+		<h2 id="ss">底部</h2>
+	</div>
+</div>
+<div class="forc"><span></span></div>
+
+<script type="text/javascript">
+/////////////////////////////////////////////////////////////////////////////////
+$(window).resize(function(){//侧边栏按钮随窗口大小改变
+	var w=$(window).height()-100;
+	$(".box").css({'height':w+'px'});
+
+})
+for (var i = 1; i < 10; i++) { 
+	$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+}  
+jScroll($(".boxcont").get(0),{
+handerOverColor:'#eee',
+handerDownColor:'#ccc',
+middleoOacity:.5},undefined,
+{
+	reset:function(c){
+		$('#ss').unbind('click').click(function(){
+			for (var i = 1; i < 10; i++) { 
+				$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+			} 
+			c();
+		})
+	},
+	toend:function(c){
+		for (var i = 1; i < 10; i++) { 
+			$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+		};
+		c();
+	}
+});
+		
+</script>
+</body>
+</html>
