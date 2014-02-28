@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="JScroll.js"></script>
+<title>无标题文档</title>
+<style type="text/css">
+*{font-family:"Arial","Tahoma","微软雅黑","雅黑"}
+.box {width:496px;overflow:hidden;border:1px solid #ddd;padding:10px;height:400px;position:relative;margin:20px;box-shadow:1px 2px 5px #000}
+.boxcont {position:absolute;}
+span{margin:10px 10px 0px 5px}
+div p,pre {font:12px "微软雅黑", Arial,tahoma, Verdana, sans-serif; line-height:22px; padding-left:30px; color:#999}
+</style>
+</head>
+<body >
+<script type="text/javascript">
+
+</script>
+<hr>
+<div class="box" onselectstart="return false">
+	<div class="boxcont" >	
+		<h2 >顶部</h2>
+		<div class="for"><span></span></div>
+		<h2 id="ss">底部</h2>
+	</div>
+</div>
+<div class="forc"><span></span></div>
+
+<script type="text/javascript">
+$(window).resize(function(){//侧边栏按钮随窗口大小改变
+	var w=$(window).height()-100;
+	$(".box").css({'height':w+'px'});
+})
+for (var i = 1; i < 10; i++) { 
+	$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+}  
+
+jScroll(
+//必选参数
+$(".boxcont").get(0),//内容元素dom
+//可选参数 
+{
+	width:"10",//滚动条宽度
+	handerColor:"#eaeaea",//手柄颜色
+	handerOverColor:false,//手柄划过时颜色
+	handerDownColor:false,//手柄点击颜色
+	barColor:"#999a9a",//滚动条颜色
+	barImage:"",//滚动条背景图
+	handerImage:"",//手柄背景图
+	barRadius:10,//滚动条弧度
+	margin:'2px',//滚动条margin值
+	border:1,//滚动条边框
+	borderColor:'#ccc',//滚动条边框色
+	resize:true,//是否随窗口大小改变而改变
+	minOpacity:0.6,//最小透明度 移出内容区域时
+	middleOpacity:0.7,//平常透明度  鼠标在内容区域时
+	maxOpacity:1,//最大透明度  拖到内容时
+	wheelparam:7,//鼠标滚轮滚动幅度
+	wheelFn:null,//滚轮滚动执行方法
+	scrollFn:null//拖动执行方法
+},
+//可选
+	undefined,//放置滚动条元素的dom ，underfined时默认为内容元素父节点
+//可选
+{
+	reset:function(c){//滚动条辅助接口  回调参数为滚动条初始化方法
+		$('#ss').unbind('click').click(function(){
+			for (var i = 1; i < 10; i++) { 
+				$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+			} 
+			c();
+		})
+	},
+	toend:function(c){//滚动条到底部时执行方法 回调参数为滚动条初始化方法
+		for (var i = 1; i < 10; i++) { 
+			$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
+		};
+		c();
+	}
+});
+		
+</script>
+</body>
+</html>
