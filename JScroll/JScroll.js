@@ -99,7 +99,7 @@ var
 				var _style = ( i =='float')?((browser.ie)?'styleFloat':'cssFloat'):i;
 				elStyle[_style] = styleisObject[i] ; 
 			}
-		}
+		};
 		//滚动条初始化
 		fun.init = function(){
 			
@@ -150,9 +150,9 @@ var
 			});
 		};
 		fun.reInit = function(){
-			fun.init()
+			fun.init();
 			jScroll.getClassDom('scrollBar_hander',parentNode)[0].style.top = -deltaMouse*set.wheelparam +'px';
-		}
+		};
 		fun.init();
 		if(helper.reset) {
 			helper.reset(function(){
@@ -187,7 +187,7 @@ var
 		 				});
 						handerHeight = elements['hander'].offsetHeight ;//变化后新滚动条高度参数
 						barTop = elements['Bar'].offsetTop,/*19*/  
-						handerTop = elements['hander'].offsetTop/*20*/
+						handerTop = elements['hander'].offsetTop ;/*20*/
 
 						if(handerTop-barTop+handerHeight>=barHeight){
 							elements['hander'].style.top = barHeight-handerHeight +'px';
@@ -213,7 +213,7 @@ var
 				x:e.clientX+document.body.scrollLeft+document.documentElement.scrollLeft,
 				y:e.clientY+document.body.scrollTop+document.documentElement.scrollTop
 			};
-		}
+		};
 		//根据滚动条位置控制内容层位置
 		fun.barCtrlcontent = function(){
 			var scrBar = jScroll.getClassDom('scrollBar',parentNode)[0],
@@ -239,7 +239,7 @@ var
 					clearInterval(ani);
 				}
 			},1)
-		}
+		};
 		//鼠标事件
 		fun.mouse = function(){
 			var scrBar = jScroll.getClassDom('scrollBar',parentNode)[0],
@@ -278,11 +278,11 @@ var
 						barTop = scrBar.offsetTop ;
 						if(set.handerDownColor){
 							hander.style.backgroundColor = set.handerDownColor;
-						}
+						};
 						if(set.handerOverColor){
 							jScroll.Event._del(hander,'mouseout',handerOutFn);
 							jScroll.Event._del(hander,'mouseover',handerOverFn);
-						}
+						};
 						
 						arg._y = fun.mousePos(e).y - handerTop;//小条条的相对坐标Y
 						del_add_event(document,'mousemove',moveFn);	
@@ -292,7 +292,7 @@ var
 							clearInterval(arg.animate);
 						 	handerHeight  = hander.offsetHeight ;
 							barHeight = scrBar.offsetHeight ;
-							var ny = fun.mousePos(e).y
+							var ny = fun.mousePos(e).y ;
 							arg.animate = setInterval(function(){
 					            var _y = hander.getBoundingClientRect().top  + document.documentElement.scrollTop ,
 					            	barTop = scrBar.getBoundingClientRect().top+ document.documentElement.scrollTop ,
@@ -312,7 +312,7 @@ var
 					        	handerTopCp=((handerTop-scrBar.offsetTop-set.border)/barHeight);
 				            },1)
 			        	}
-			    	}
+			    	};
 			    	jScroll.Event._del(scrBar,'mouseout',isBarOutFn);
 			    	//jScroll.Event._del(parentNode,'mouseout',pNoutFn);
 			    	jScroll.stopDefault(e);
@@ -334,10 +334,10 @@ var
 						hander.style.top = dif +'px';
 						if(dif<0){hander.style.top = 0;if(helper.totop) {helper.totop(function(){
 							fun.reInit();
-						});}}
+						});}};
 						if(dif>barHeight-handerHeight){hander.style.top = barHeight-handerHeight +'px';if(helper.toend) {helper.toend(function(){
 							fun.reInit();
-						});}}
+						});}};
 						fun.barCtrlcontent();
 						if(set.scrollFn!=null){set.scrollFn();}
 					}
@@ -358,7 +358,7 @@ var
 					if(dom!=scrBar&&dom!=hander){
 						_opacity =(arg.over)?set.middleOpacity:set.minOpacity;
 						fun.animateOpacity(scrBar,parseFloat(scrBar.style.opacity),_opacity);
-					}
+					};
 					jScroll.Event._add(scrBar,'mouseout',isBarOutFn);
 					clearInterval(arg.animate);
 					return false;
@@ -457,7 +457,7 @@ var
 			mousewheelDelay = setTimeout(function(){
 				fun.animateOpacity(scrBar,parseFloat(scrBar.style.opacity),set.middleOpacity);
 				clearTimeout(mousewheelDelay);
-			},1000)
+			},1000);
 			if(set.wheelFn!=null){set.wheelFn()}
 		})
 	};
@@ -586,7 +586,7 @@ var
         else{//other,for example, Safari
             return null;
         }
-	}
+	};
 	
 
 	jScroll.Event = jScroll.prototype.Event = {
@@ -625,7 +625,7 @@ var
 				return false;
 			};
 		}
-	}
+	};
 	/**
 	 * 解决鼠标事件over&out在子元素触发bug.
 	 * @param1 theEvent {window event} 
@@ -645,7 +645,7 @@ var
 	            }
 	        }
 	    };fn();
-	}
+	};
 	/**
 	 * 阻止默认浏览器动作.
 	 * @param e {window event} 
@@ -657,8 +657,8 @@ var
 	    //IE中阻止函数器默认动作的方式 
 	    else {window.event.returnValue = false; }
 	    return false; 
-	}
+	};
 	if ( typeof window === "object" && typeof window.document === "object" ) {
 		window.jScroll = jScroll;
-	}
+	};
 })();
