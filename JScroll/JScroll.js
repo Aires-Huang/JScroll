@@ -298,9 +298,9 @@ var
 					            	barTop = scrBar.getBoundingClientRect().top+ document.documentElement.scrollTop ,
 					            	dif = _y-barTop-set.border;
 				            	if(_y > ny){
-				            		dif = dif -1;
+				            		dif = dif -1*set.wheelparam;
 					        	}else if(_y + handerHeight < ny){		        		
-					        		dif = dif +1;
+					        		dif = dif +1*set.wheelparam;
 					        	}else{
 					        		clearInterval(arg.animate);
 					        	}
