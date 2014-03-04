@@ -72,6 +72,7 @@ var
 		border:1,
 		borderColor:'#ccc',
 		resize:true,
+		zIndex:9999,
 		minOpacity:0.6,
 		middleOpacity:0.7,
 		maxOpacity:1,
@@ -130,7 +131,7 @@ var
 				'background':'url('+set.barImage+') '+set.barColor+' no-repeat',
 				'right':0, 
 				'top':0,
-				'zIndex':9999,
+				'zIndex':set.zIndex,
 				'display':'block',
 				'margin':set.margin,
 				'opacity':set.minOpacity
@@ -598,7 +599,7 @@ var
 	 */
 		_add : function(obj,type,fun){
 			if(obj.addEventListener){
-				obj.addEventListener(type,fun);
+				obj.addEventListener(type,fun,false);
 				return true;
 			}else if(obj.attachEvent){
 				return obj.attachEvent("on"+type,fun);
@@ -615,7 +616,7 @@ var
 	 */	
 		_del : function(obj,type,fun){
 			if(obj.addEventListener){
-				obj.removeEventListener(type,fun);
+				obj.removeEventListener(type,fun,false);
 				return true;
 			}else if(obj.attachEvent){
 				obj.detachEvent("on"+type,fun);
@@ -632,7 +633,7 @@ var
 	 * @param2 fn {function} [触发函式] 
 	 */
 	jScroll.isthisDom = jScroll.prototype.isthisDom = function(theEvent,obj,fn){  //theEvent用来传入事件，Firefox的方式
-	    if (theEvent){
+	    if (theEvent&&obj.contains){
 	        if (browser.gecko||browser.webkit||browser.opera){ 
 	            if (obj.contains(theEvent.relatedTarget)) {  
 	                return;   //结束函式
