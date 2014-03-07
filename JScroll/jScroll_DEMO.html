@@ -72,11 +72,12 @@ $(".boxcont").get(0),//内容元素dom
 			c();
 		})
 	},
-	toend:function(c){//滚动条到底部时执行方法 回调参数为滚动条初始化方法
+	toend:function(call,end){//滚动条到底部时执行方法 回调参数为滚动条初始化方法
 		for (var i = 1; i < 10; i++) { 
 			$(".for span").append("<p >里面有" + i + "个和尚！！！</p> ");  
 		};
-		c();
+		call();
+		end();
 	}
 });
 		

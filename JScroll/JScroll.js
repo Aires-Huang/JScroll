@@ -332,12 +332,8 @@ var
 						barHeight = scrBar.offsetHeight -2*set.border; 
 						handerHeight = hander.offsetHeight;
 						hander.style.top = dif +'px';
-						if(dif<0){hander.style.top = 0;if(helper.totop) {helper.totop(function(){
-							fun.reInit();
-						});}};
-						if(dif>barHeight-handerHeight){hander.style.top = barHeight-handerHeight +'px';if(helper.toend) {helper.toend(function(){
-							fun.reInit();
-						});}};
+						if(dif<0){hander.style.top = 0;if(helper.totop) {helper.totop(function(){fun.reInit();},function(){fun.totop = null;});}};
+						if(dif>barHeight-handerHeight){hander.style.top = barHeight-handerHeight +'px';if(helper.toend) {helper.toend(function(){fun.reInit();},function(){fun.toend = null;});}};
 						fun.barCtrlcontent();
 						if(set.scrollFn!=null){set.scrollFn();}
 					}
@@ -443,12 +439,8 @@ var
 			if(delta>0){i++;}
 			else if(delta<0){i--;}
 			deltaMouse = i + deltaMouse;
-			if(-deltaMouse<0){deltaMouse = 0;if(helper.totop){helper.totop(function(){
-				fun.reInit();
-			});}};
-			if(-deltaMouse*set.wheelparam>barHeight-handerHeight){deltaMouse=(handerHeight-barHeight)/set.wheelparam;if(helper.toend){helper.toend(function(){
-				fun.reInit();
-			});}}
+			if(-deltaMouse<0){deltaMouse = 0;if(helper.totop){helper.totop(function(){fun.reInit();},function(){helper.totop = null;});}};
+			if(-deltaMouse*set.wheelparam>barHeight-handerHeight){deltaMouse=(handerHeight-barHeight)/set.wheelparam;if(helper.toend){helper.toend(function(){fun.reInit();},function(){helper.toend = null;});}}
 			hander.style.top = -deltaMouse*set.wheelparam +'px';
 			var _thisTop = (-deltaMouse*set.wheelparam)*(childNodeHeight-parentNodeHeight)/(barHeight-handerHeight);
 			childNode.style.top = -_thisTop +'px';
